@@ -4,7 +4,7 @@ import numpy as np
 
 #for x >= 0, y = x
 # for x < 0, y = 0
-class relu:
+class Relu:
     def forward(self, inputs):
         self.output = np.maximum(0, inputs)
         
