@@ -10,17 +10,17 @@ class_targets = np.array([[1, 0, 0],
 
 class Loss:
     def calculate(self, output, y):
-        sample_losses = self.forward(output, y)
+        sample_losses = self.forward_pass(output, y)
         
         data_loss = np.mean(sample_losses)
         
         return data_loss
     
-class Loss_CategoricalCrossentropy(Loss):
+class CategoricalCrossentropy(Loss):
     #all data will be clipped so we don't take the log of 0 or 1
     #-log(0) = infinity
     #-log(1) = 0
-    def forward(self, y_pred, y_true):
+    def forward_pass(self, y_pred, y_true):
         #y_pred is 2d
         batch = len(y_pred)
         
@@ -36,3 +36,17 @@ class Loss_CategoricalCrossentropy(Loss):
         
         negative_log = -np.log(highest_output_confidence)
         return negative_log
+
+    def backwards_pass(self, dvalues, y_true):
+        # Number of samples
+        samples = len(dvalues)
+        # Number of labels in every sample
+        # We'll use the first sample to count them
+        labels = len(dvalues[0])
+        # If labels are sparse, turn them into one-hot vector
+        if len(y_true.shape) == 1:
+            y_true = np.eye(labels)[y_true]
+        # Calculate gradient
+        self.dinputs = -y_true / dvalues
+        # Normalize gradient
+        self.dinputs = self.dinputs / samples
