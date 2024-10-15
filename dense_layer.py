@@ -14,4 +14,4 @@ class DenseLayer:
     def backwards_pass(self, dvalues):
         self.dweights = np.dot(self.inputs.T, dvalues)
         self.dinputs = np.dot(dvalues, self.weights.T)
-        self.dbias = np.sum(dvalues, axis=0, keepdims=True)
+        self.dbiases = np.sum(dvalues, axis=0, keepdims=True)
