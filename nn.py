@@ -4,9 +4,11 @@ from dense_layer import DenseLayer
 from loss_functions import CategoricalCrossentropy
 from softmax_and_categorical_crossentropy import Softmax_CategoricalCrossentropy
 from sgd import SGD
+from adam import Adam
 import numpy as np
 import nnfs
 from nnfs.datasets import spiral_data #nnfs = neurel networks from scratch(name of the book)
+from matplotlib import pyplot as plt
 
 nnfs.init()
 
@@ -31,7 +33,7 @@ dense2 = DenseLayer(64, 3)
 # Create Softmax classifier's combined loss and activation
 loss_activation = Softmax_CategoricalCrossentropy()
 # Create optimizer
-optimizer = SGD(decay=1e-3, momentum=0.9)
+optimizer = Adam(learning_rate=0.05, decay=5e-7)
 # Train in loop
 for epoch in range(10001):
     # Perform a forward pass of our training data through this layer
