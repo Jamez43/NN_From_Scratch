@@ -68,3 +68,16 @@ for epoch in range(10001):
     optimizer.update_params(dense1)
     optimizer.update_params(dense2)
     optimizer.post_update_params()
+
+
+#Test
+X_test, y_test = spiral_data(samples=100, classes=3)
+dense1.forward_pass(X_test)
+activation1.forward_pass(dense1.output)
+dense2.forward_pass(activation1.output)
+loss = loss_activation.forward_pass(dense2.output, y_test)
+predictions = np.argmax(loss_activation.output, axis=1)
+if len(y.shape) == 2:
+    y = np.argmax(y, axis=1)
+accuracy = np.mean(predictions==y)
+print(f'validation, acc: {accuracy:.3f}, loss: {loss:.3f}')
