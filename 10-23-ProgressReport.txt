@@ -1,3 +1,0 @@
-I finished the Neural Network from scratch book. I have a model that can do both SoftMax and sigmoid output functions. It optimizes using the Adam algorithm with decay and momentum. I skipped the last parts of the book because it went really in depth on optimizations and more complex algorithms that I wasn't interested in.
-
-Now that I have a less abstract understanding of neural networks, I want to make an AI that plays the card game Spades. It will make the pre round bids based on the cards it has and during the round, play the best available card given the cards that were already played and the cards it has.
